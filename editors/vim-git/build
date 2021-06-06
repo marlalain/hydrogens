@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+ROOT="${HOME}/.hydro"
+BIN="${ROOT}/bin/"
+LIB="${ROOT}/lib/"
+SRC="${ROOT}/src/"
+SHARE="${ROOT}/share"
+
+mkdir -p src
+git clone --depth=1 https://github.com/vim/vim src
+cd src
+./configure --bindir=$BIN --libdir=$LIB --mandir=/dev/null ${2---disable-gui} --datarootdir=$SHARE
+cd src/src
+make install
+cd ../..
+rm -rf src
+
+exit 0
